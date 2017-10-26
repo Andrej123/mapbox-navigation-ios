@@ -162,6 +162,10 @@ class RouteManeuverViewController: UIViewController {
     }
     
     func updateStreetNameForStep() {
-        destinationLabel.unabridgedText = visualInstructionFormatter.string(leg: leg, step: step)
+        if let bannerInstructionsAlongStep = step?.bannerInstructionsAlongStep?.first {
+            destinationLabel.unabridgedText = bannerInstructionsAlongStep.primaryContent?.text
+        } else {
+            destinationLabel.unabridgedText = nil
+        }
     }
 }
