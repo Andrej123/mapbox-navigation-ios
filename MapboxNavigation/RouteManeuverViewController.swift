@@ -13,10 +13,10 @@ class RouteManeuverViewController: UIViewController {
     let routeStepFormatter = RouteStepFormatter()
     let visualInstructionFormatter = VisualInstructionFormatter()
     
-    var step: RouteStep? {
+    var upcomingStep: RouteStep? {
         didSet {
             if isViewLoaded {
-                roadCode = step?.codes?.first ?? step?.destinationCodes?.first ?? step?.destinations?.first
+                roadCode = upcomingStep?.codes?.first ?? upcomingStep?.destinationCodes?.first ?? upcomingStep?.destinations?.first
                 updateStreetNameForStep()
             }
         }
@@ -162,7 +162,7 @@ class RouteManeuverViewController: UIViewController {
     }
     
     func updateStreetNameForStep() {
-        if let bannerInstructionsAlongStep = step?.bannerInstructionsAlongStep?.first {
+        if let bannerInstructionsAlongStep = upcomingStep?.bannerInstructionsAlongStep?.first {
             destinationLabel.unabridgedText = bannerInstructionsAlongStep.primaryContent?.text
         } else {
             destinationLabel.unabridgedText = nil
